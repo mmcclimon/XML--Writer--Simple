@@ -11,29 +11,28 @@ XML::Writer::Simple - Perl extension for writing XML data
 
 =head1 SYNOPSIS
 
-    use XML::Writer::Simple;
-    setup;
+    $xml = XML::Writer::Simple->new();
 
     # do a simple XML tag with text
-    doTag('tag1', 'here is some text content');
+    $xml->doTag('tag1', 'here is some text content');
 
     # a more complicated element, 2nd param is a coderef
     # outputs "<tag2a><tag2b>some text</tag2b></tag2a>"
-    doTag('tag2a', sub {
-        doTag('tag2b', 'some text');
+    $xml->doTag('tag2a', sub {
+        $xml->doTag('tag2b', 'some text');
     });
 
     # with attributes
     # outputs '<tag3 title="A Tag" href="example.com">link text</tag3>'
-    doTag('tag3', {
+    $xml->doTag('tag3', {
         title => 'A Tag',
         href => 'example.com',
         content => 'link text',
     });
 
     # do a tag only if the content is non-empty
-    doTagIf('tag3', 'some text')    # outputs <tag2>some text</tag2>
-    doTagIf('tag3', '');            # will not write anything
+    $xml->doTagIf('tag3', 'some text')    # outputs <tag2>some text</tag2>
+    $xml->doTagIf('tag3', '');            # will not write anything
 
 =head1 DESCRIPTION
 
@@ -46,38 +45,39 @@ deal with the C<XML::Writer> object directly.
 
 use base qw/Exporter XML::Writer/;
 use vars qw/@EXPORT_OK/;
-@EXPORT_OK = qw(doTag doTagIf);
 
 # package vars for ref to output file
-my ($out, $xml);
+my $out;
 
 =head1 METHODS
 
 =over 4
 
+=item * C<new>
+
+    XML::Writer::Simple->new(%params);
+
+Creates the object. Acceptable hash keys for %params are the same as those
+for L<XML::Writer>. This module assumes everything is UTF-8, so you can
+omit that if you like; it will be provided for you.
+
 =cut
 
 sub new {
     my ($class, %params) = @_;
-    $params{ENCODING} = 'utf-8';
+    $params{ENCODING} ||= 'utf-8';
 
     my $self = $class->SUPER::new(%params);
     $out = &{$self->{GETOUTPUT}};
-    $self->xmlDecl('UTF-8');
+    $self->xmlDecl('UTF-8') if $params{ENCODING} eq 'utf-8';
     bless $self, $class;
 }
 
+# Automatically ends XML and closes file when writer object leaves scope
 sub DESTROY {
     my $self = shift;
     $self->end();
     $out->close();
-}
-
-
-sub speak {
-    my $self = shift;
-    $out->print("ok!\n");
-
 }
 
 =item * C<doTag>
@@ -87,7 +87,7 @@ sub speak {
 This is the function that does all the real work. First parameter is always
 the tag name, the 2nd varies in a couple of ways:
 
-=over 8
+=over 4
 
 =item * Simple tags
 
@@ -121,16 +121,18 @@ structures.
 
 =item * Tags with attributes
 
-If C<$content> is a hashref, then this writes $tagName with the attributes
-specified as the keys of the hashref. Content for the tag is provided with the
-key C<content>, which may also be a coderef.
+C<$content> may also be a hashref, with valid keys C<attr> and C<content>.
+C<attr> must be an array ref of key/value pairs, and C<content> may be either
+a scalar used as the content of that element, or a coderef (as above).
 
     # outputs "<example3 id='ex3'>text z</example3>"
-    doTag('example3', {id => 'ex3', content => 'text z'});
+    doTag('example3', {
+        attr => [id => 'ex3', content => 'text z'],
+    });
 
     # outputs '<example4 id="ex4"><exZ>more text</exZ></example4>'
     doTag('example4', { 
-        id => 'ex4',
+        attr => [id => 'ex4'],
         content => sub {
             doTag('exZ', 'more text');
         }
