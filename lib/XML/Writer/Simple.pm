@@ -44,8 +44,8 @@ deal with the C<XML::Writer> object directly.
 =cut
 
 use base qw/Exporter XML::Writer/;
-use vars qw/@EXPORT_OK/;
-
+use vars qw/@EXPORT_OK $VERSION/;
+$VERSION = '0.01';
 # package vars for ref to output file
 my $out;
 
