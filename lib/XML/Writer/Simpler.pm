@@ -115,7 +115,10 @@ sub tag {
     my @attrs;
     # if we just have a tag name and an array ref, then the thing we popped
     # off of @_ might actually be the attribute array ref
-    $aref = $content if ref $content eq 'ARRAY';
+    if (ref $content eq 'ARRAY') {
+        $aref = $content;
+        undef($content);
+    }
     @attrs = @$aref if ref $aref eq 'ARRAY';
 
     if (ref $content eq 'CODE') {
