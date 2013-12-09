@@ -1,4 +1,4 @@
-XML-Writer-Simple
+XML-Writer-Simpler
 
 The README is used to introduce the module and provide instructions on
 how to install the module, any machine dependencies it may have (for
@@ -26,21 +26,21 @@ SUPPORT AND DOCUMENTATION
 After installing, you can find documentation for this module with the
 perldoc command.
 
-    perldoc XML::Writer::Simple
+    perldoc XML::Writer::Simpler
 
 You can also look for information at:
 
     RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Writer-Simple
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=XML-Writer-Simpler
 
     AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/XML-Writer-Simple
+        http://annocpan.org/dist/XML-Writer-Simpler
 
     CPAN Ratings
-        http://cpanratings.perl.org/d/XML-Writer-Simple
+        http://cpanratings.perl.org/d/XML-Writer-Simpler
 
     Search CPAN
-        http://search.cpan.org/dist/XML-Writer-Simple/
+        http://search.cpan.org/dist/XML-Writer-Simpler/
 
 
 LICENSE AND COPYRIGHT

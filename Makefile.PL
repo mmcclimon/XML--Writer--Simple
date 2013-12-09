@@ -4,10 +4,10 @@ use warnings FATAL => 'all';
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    NAME             => 'XML::Writer::Simple',
+    NAME             => 'XML::Writer::Simpler',
     AUTHOR           => q{Michael McClimon <michael@mcclimon.org>},
-    VERSION_FROM     => 'lib/XML/Writer/Simple.pm',
-    ABSTRACT_FROM    => 'lib/XML/Writer/Simple.pm',
+    VERSION_FROM     => 'lib/XML/Writer/Simpler.pm',
+    ABSTRACT_FROM    => 'lib/XML/Writer/Simpler.pm',
     LICENSE          => 'Artistic_2_0',
     PL_FILES         => {},
     MIN_PERL_VERSION => 5.006,
@@ -18,9 +18,8 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        #'ABC'              => 1.6,
-        #'Foo::Bar::Module' => 5.0401,
+        'XML::Writer'       => 0.6,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean => { FILES => 'XML-Writer-Simple-*' },
+    clean => { FILES => 'XML-Writer-Simpler-*' },
 );

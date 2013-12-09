@@ -51,5 +51,5 @@ TODO: {
   );
 }
 
-  module_boilerplate_ok('lib/XML/Writer/Simple.pm');
+  module_boilerplate_ok('lib/XML/Writer/Simpler.pm');
 
