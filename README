@@ -1,15 +1,19 @@
 XML-Writer-Simpler
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+(Version 0.1)
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+This is a convenience module for writing XML. It's a subclass of
+C<XML::Writer>, with a single convenience method so you usually won't have
+to deal with remembering to call startTag(), endTag(), and
+emptyTag().
+
+This module is lies somewhere in between XML::Generator and
+XML::Writer::Nest. It nests calls like XML::Generator, but allows for
+arbitrary subroutine calls as well. It requires fewer braces in general than
+XML::Writer::Nest.
+
+This module is a subclass of XML::Writer, so if you can't do what you want to
+with the tag method, you can fall back to the methods native to XML::Writer.
 
 
 INSTALLATION
@@ -51,7 +55,7 @@ This program is free software; you can redistribute it and/or modify it
 under the terms of the the Artistic License (2.0). You may obtain a
 copy of the full license at:
 
-L<http://www.perlfoundation.org/artistic_license_2_0>
+http://www.perlfoundation.org/artistic_license_2_0
 
 Any use, modification, and distribution of the Standard or Modified
 Versions is governed by this Artistic License. By using, modifying or

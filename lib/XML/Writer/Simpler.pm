@@ -18,6 +18,14 @@ C<XML::Writer>, with a single convenience method so you usually won't have
 to deal with remembering to call C<startTag()>, C<endTag()>, and
 C<emptyTag()>.
 
+This module is lies somewhere in between L<XML::Generator|XML::Generator> and
+L<XML::Writer::Nest>. It nests calls like XML::Generator, but allows for
+arbitrary subroutine calls as well. It requires fewer braces in general than
+XML::Writer::Nest.
+
+This module is a subclass of XML::Writer, so if you can't do what you want to
+with the C<tag> method, you can fall back to the methods native to XML::Writer.
+
 =cut
 
 use base qw/Exporter XML::Writer/;
