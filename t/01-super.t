@@ -7,7 +7,7 @@ use Test::More;
 use XML::Writer::Simpler;
 
 my $class = 'XML::Writer::Simpler';
-my $w = $class->new();
+my $w = $class->new(OUTPUT => 'self');
 
 # can we do everything our parent can do?
 SUPER: {
