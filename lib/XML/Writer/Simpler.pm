@@ -34,7 +34,7 @@ use vars qw/@EXPORT_OK $VERSION/;
 use Carp;
 
 
-$VERSION = '0.1';
+$VERSION = '0.11';
 # package vars for ref to output file
 my $out;
 
